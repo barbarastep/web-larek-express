@@ -28,10 +28,11 @@
     "@faker-js/faker": "^10.3.0",
     "celebrate": "^15.0.3",
     "cors": "^2.8.6",
+    "dotenv": "^17.3.1",
     "express": "^4.19.2",
     "express-winston": "^4.2.0",
-    "mongoose": "^8.3.2",
     "joi": "^18.0.2",
+    "mongoose": "^8.3.2",
     "winston": "^3.19.0"
   }
 }
