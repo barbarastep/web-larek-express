@@ -18,11 +18,12 @@ app.use(requestLogger);
 app.use(productRoutes);
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(orderRoutes);
-app.use(errorLogger);
-app.use(errors());
+
 app.use((_req, _res, next) => {
   next(new NotFoundError('Маршрут не найден'));
 });
+app.use(errorLogger);
+app.use(errors());
 app.use(errorHandler);
 
 mongoose.connect(DB_ADDRESS)
