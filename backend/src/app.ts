@@ -8,6 +8,7 @@ import orderRoutes from './routes/order';
 import NotFoundError from './errors/not-found-error';
 import errorHandler from './middlewares/error-handler';
 import { requestLogger, errorLogger } from './middlewares/logger';
+import { DB_ADDRESS, PORT } from './config';
 
 const app = express();
 
@@ -24,14 +25,8 @@ app.use((_req, _res, next) => {
 });
 app.use(errorHandler);
 
-mongoose.connect('mongodb://127.0.0.1:27017/weblarek')
-  .then(() => console.log('MongoDB connected'))
-  .catch(console.error);
-
-app.get('/', (_req, res) => {
-  res.send({ message: 'Server is working' });
-});
-
-app.listen(3000, () => {
-  console.log('Server started on http://localhost:3000');
-});
+mongoose.connect(DB_ADDRESS)
+  .then(() => {
+    app.listen(PORT, () => {});
+  })
+  .catch(() => process.exit(1));
